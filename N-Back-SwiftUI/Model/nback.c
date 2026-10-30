@@ -38,6 +38,10 @@ int getIndexOf(Nback s, int i){
     return s->content[i];
 }
 
+void destroy(Nback s){
+    free(s);
+}
+
 
 void createNBackString(int nBackString[], int size, int combinations, int matchPercentage, int nback){
     // Seed the random number generator

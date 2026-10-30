@@ -4,27 +4,30 @@
 //
 //  Created by Jonas Willén on 2023-10-03.
 //
+//  Kept from the starter template. HomeView is the main entry UI now;
+//  this view remains as a simple stimulus-picker helper if needed later.
+//
 
 import SwiftUI
 
 struct ActionIconView: View {
-    @EnvironmentObject var theViewModel : N_Back_SwiftUIVM
+    @EnvironmentObject var theViewModel: N_Back_SwiftUIVM
+
     var body: some View {
         VStack(alignment: .center) {
-            Text("START GAME").font(.largeTitle)
-            HStack(spacing: 30){
+            Text("STIMULUS").font(.largeTitle)
+            HStack(spacing: 30) {
                 Button {
-                    theViewModel.soundClick()
+                    theViewModel.selectStimulus(.auditory)
                 } label: {
                     SoundIconView()
                 }
                 Button {
-                    theViewModel.imageClick()
+                    theViewModel.selectStimulus(.visual)
                 } label: {
                     ImageIconView()
                 }
             }
-            
         }
     }
 }

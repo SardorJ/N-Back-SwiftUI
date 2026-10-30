@@ -7,80 +7,47 @@
 
 import SwiftUI
 
-
-// Our custom view modifier to track rotation and
-// call our action
-struct DeviceRotationViewModifier: ViewModifier {
-    let action: (UIDeviceOrientation) -> Void
-
-    func body(content: Content) -> some View {
-        content
-            .onAppear()
-            .onReceive(NotificationCenter.default.publisher(for: UIDevice.orientationDidChangeNotification)) { _ in
-                action(UIDevice.current.orientation)
-            }
-    }
-}
-
-// A View wrapper to make the modifier easier to use
-extension View {
-    func onRotate(perform action: @escaping (UIDeviceOrientation) -> Void) -> some View {
-        self.modifier(DeviceRotationViewModifier(action: action))
-    }
-}
-
+/// Root view: Home (with navigation to Settings / Scores) or Game from ViewModel phase.
+/// The ViewModel does not navigate itself — the View observes `phase`.
 struct ContentView: View {
-    @EnvironmentObject var theViewModel : N_Back_SwiftUIVM
-    @State private var orientation = UIDeviceOrientation.portrait
-    
+    @EnvironmentObject var theViewModel: N_Back_SwiftUIVM
+
     var body: some View {
-        VStack() {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            
-            Text("High-Score \(theViewModel.highScore)")
-            Spacer()
-            Button {
-                theViewModel.newHighScoreValue()
-            } label: {
-                Text("Generate eventValue")
-                    .font(.title)
+        Group {
+            if theViewModel.phase == .idle {
+                NavigationStack {
+                    HomeView()
+                }
+            } else {
+                GameView()
             }
-            .padding()
-            Spacer()
-            ActionIconView()
-            
         }
-        .padding()
     }
 }
 
-
-
-
-
-struct ContentView_Previews:     {
+struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        Group{
-            ForEach(["iPhone SE (3rd generation)", "iPhone 14 Pro Max"], id: \.self) { deviceName in
-                           ContentView()
-                                .previewDevice(PreviewDevice(rawValue: deviceName))
-                                .previewDisplayName(deviceName)
-                                .environmentObject(N_Back_SwiftUIVM())
-                      }
-            
+        Group {
             ContentView()
-                .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
-                .previewDisplayName("iPhone 14 Pro Max Landscape")
                 .environmentObject(N_Back_SwiftUIVM())
+                .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
+                .previewDisplayName("iPhone 14 Pro Max")
+
+            ContentView()
+                .environmentObject(N_Back_SwiftUIVM())
+                .previewDevice(PreviewDevice(rawValue: "iPhone SE (3rd generation)"))
+                .previewDisplayName("iPhone SE")
+
+            ContentView()
+                .environmentObject(N_Back_SwiftUIVM())
+                .previewDevice(PreviewDevice(rawValue: "iPad (A16)"))
+                .previewDisplayName("iPad")
+
+            ContentView()
+                .environmentObject(N_Back_SwiftUIVM())
+                .previewDevice(PreviewDevice(rawValue: "iPhone 14 Pro Max"))
                 .previewInterfaceOrientation(.landscapeRight)
+                .previewDisplayName("Landscape")
         }
-        
     }
 }
-
-
-
-
-

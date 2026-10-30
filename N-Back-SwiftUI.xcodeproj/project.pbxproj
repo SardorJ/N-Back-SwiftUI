@@ -7,6 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1B100012ACF000100000001 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B100002ACF000100000001 /* HomeView.swift */; };
+		A1B100032ACF000100000002 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B100022ACF000100000002 /* GameView.swift */; };
+		A1B1000B2ACF00010000000A /* N_Back_SwiftUIModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B1000A2ACF00010000000A /* N_Back_SwiftUIModelTests.swift */; };
+		A1B200012ACF000200000001 /* GameSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B200002ACF000200000001 /* GameSettings.swift */; };
+		A1B200032ACF000200000002 /* SettingsStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B200022ACF000200000002 /* SettingsStore.swift */; };
+		A1B200052ACF000200000003 /* ScorePersistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B200042ACF000200000003 /* ScorePersistence.swift */; };
+		A1B200072ACF000200000004 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B200062ACF000200000004 /* SettingsView.swift */; };
+		A1B200092ACF000200000005 /* ScoreHistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1B200082ACF000200000005 /* ScoreHistoryView.swift */; };
+		A1B2000B2ACF000200000006 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A1B2000A2ACF000200000006 /* CoreData.framework */; };
 		EBA7C6D42ACB0C1800585AF6 /* nback.c in Sources */ = {isa = PBXBuildFile; fileRef = EBA7C6D32ACB0C1800585AF6 /* nback.c */; };
 		EBA7C6DC2ACC0CD300585AF6 /* SoundIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA7C6DB2ACC0CD300585AF6 /* SoundIconView.swift */; };
 		EBA7C6DE2ACC0EB700585AF6 /* ImageIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EBA7C6DD2ACC0EB700585AF6 /* ImageIconView.swift */; };
@@ -20,6 +29,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A1B100002ACF000100000001 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		A1B100022ACF000100000002 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
+		A1B100082ACF000100000008 /* N-Back-SwiftUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "N-Back-SwiftUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A1B1000A2ACF00010000000A /* N_Back_SwiftUIModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = N_Back_SwiftUIModelTests.swift; sourceTree = "<group>"; };
+		A1B200002ACF000200000001 /* GameSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameSettings.swift; sourceTree = "<group>"; };
+		A1B200022ACF000200000002 /* SettingsStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsStore.swift; sourceTree = "<group>"; };
+		A1B200042ACF000200000003 /* ScorePersistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePersistence.swift; sourceTree = "<group>"; };
+		A1B200062ACF000200000004 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		A1B200082ACF000200000005 /* ScoreHistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScoreHistoryView.swift; sourceTree = "<group>"; };
+		A1B2000A2ACF000200000006 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
 		EBA7C6D12ACB0C0C00585AF6 /* nback.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = nback.h; sourceTree = "<group>"; };
 		EBA7C6D22ACB0C1800585AF6 /* N-Back-SwiftUI-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "N-Back-SwiftUI-Bridging-Header.h"; sourceTree = "<group>"; };
 		EBA7C6D32ACB0C1800585AF6 /* nback.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = nback.c; sourceTree = "<group>"; };
@@ -36,20 +55,39 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		EBD8C0E32AB9909200DC99B8 /* Frameworks */ = {
+		A1B1000C2ACF00010000000C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EBD8C0E32AB9909200DC99B8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B2000B2ACF000200000006 /* CoreData.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		A1B2000C2ACF000200000007 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A1B2000A2ACF000200000006 /* CoreData.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		EBA7C6CF2ACB059900585AF6 /* Model */ = {
 			isa = PBXGroup;
 			children = (
 				EBD8C0F92AB997EC00DC99B8 /* N_Back_SwiftUIModel.swift */,
+				A1B200002ACF000200000001 /* GameSettings.swift */,
+				A1B200022ACF000200000002 /* SettingsStore.swift */,
+				A1B200042ACF000200000003 /* ScorePersistence.swift */,
 				EBA7C6D32ACB0C1800585AF6 /* nback.c */,
 				EBA7C6D12ACB0C0C00585AF6 /* nback.h */,
 				EBA7C6D22ACB0C1800585AF6 /* N-Back-SwiftUI-Bridging-Header.h */,
@@ -57,11 +95,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		A1B100092ACF000100000009 /* N-Back-SwiftUITests */ = {
+			isa = PBXGroup;
+			children = (
+				A1B1000A2ACF00010000000A /* N_Back_SwiftUIModelTests.swift */,
+			);
+			path = "N-Back-SwiftUITests";
+			sourceTree = "<group>";
+		};
 		EBD8C0DD2AB9909200DC99B8 = {
 			isa = PBXGroup;
 			children = (
 				EBD8C0E82AB9909200DC99B8 /* N-Back-SwiftUI */,
+				A1B100092ACF000100000009 /* N-Back-SwiftUITests */,
 				EBD8C0E72AB9909200DC99B8 /* Products */,
+				A1B2000C2ACF000200000007 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -69,6 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				EBD8C0E62AB9909200DC99B8 /* N-Back-SwiftUI.app */,
+				A1B100082ACF000100000008 /* N-Back-SwiftUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -98,6 +147,10 @@
 			isa = PBXGroup;
 			children = (
 				EBD8C0EB2AB9909200DC99B8 /* ContentView.swift */,
+				A1B100002ACF000100000001 /* HomeView.swift */,
+				A1B100022ACF000100000002 /* GameView.swift */,
+				A1B200062ACF000200000004 /* SettingsView.swift */,
+				A1B200082ACF000200000005 /* ScoreHistoryView.swift */,
 				EBA7C6DD2ACC0EB700585AF6 /* ImageIconView.swift */,
 				EBA7C6DB2ACC0CD300585AF6 /* SoundIconView.swift */,
 				EBA7C6DF2ACC0F2700585AF6 /* ActionIconView.swift */,
@@ -108,6 +161,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		A1B100072ACF000100000007 /* N-Back-SwiftUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A1B100122ACF000100000012 /* Build configuration list for PBXNativeTarget "N-Back-SwiftUITests" */;
+			buildPhases = (
+				A1B100042ACF000100000004 /* Sources */,
+				A1B1000C2ACF00010000000C /* Frameworks */,
+				A1B100052ACF000100000005 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				A1B1000F2ACF00010000000F /* PBXTargetDependency */,
+			);
+			name = "N-Back-SwiftUITests";
+			productName = "N-Back-SwiftUITests";
+			productReference = A1B100082ACF000100000008 /* N-Back-SwiftUITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		EBD8C0E52AB9909200DC99B8 /* N-Back-SwiftUI */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = EBD8C0F42AB9909400DC99B8 /* Build configuration list for PBXNativeTarget "N-Back-SwiftUI" */;
@@ -127,6 +198,24 @@
 		};
 /* End PBXNativeTarget section */
 
+/* Begin PBXContainerItemProxy section */
+		A1B1000E2ACF00010000000E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EBD8C0DE2AB9909200DC99B8 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EBD8C0E52AB9909200DC99B8;
+			remoteInfo = "N-Back-SwiftUI";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXTargetDependency section */
+		A1B1000F2ACF00010000000F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EBD8C0E52AB9909200DC99B8 /* N-Back-SwiftUI */;
+			targetProxy = A1B1000E2ACF00010000000E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXProject section */
 		EBD8C0DE2AB9909200DC99B8 /* Project object */ = {
 			isa = PBXProject;
@@ -135,6 +224,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					A1B100072ACF000100000007 = {
+						CreatedOnToolsVersion = 14.3.1;
+						TestTargetID = EBD8C0E52AB9909200DC99B8;
+					};
 					EBD8C0E52AB9909200DC99B8 = {
 						CreatedOnToolsVersion = 14.3.1;
 						LastSwiftMigration = 1430;
@@ -155,11 +248,19 @@
 			projectRoot = "";
 			targets = (
 				EBD8C0E52AB9909200DC99B8 /* N-Back-SwiftUI */,
+				A1B100072ACF000100000007 /* N-Back-SwiftUITests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		A1B100052ACF000100000005 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD8C0E42AB9909200DC99B8 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -172,14 +273,29 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		A1B100042ACF000100000004 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A1B1000B2ACF00010000000A /* N_Back_SwiftUIModelTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		EBD8C0E22AB9909200DC99B8 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				EBD8C0EC2AB9909200DC99B8 /* ContentView.swift in Sources */,
+				A1B100012ACF000100000001 /* HomeView.swift in Sources */,
+				A1B100032ACF000100000002 /* GameView.swift in Sources */,
+				A1B200072ACF000200000004 /* SettingsView.swift in Sources */,
+				A1B200092ACF000200000005 /* ScoreHistoryView.swift in Sources */,
 				EBA7C6DE2ACC0EB700585AF6 /* ImageIconView.swift in Sources */,
 				EBA7C6DC2ACC0CD300585AF6 /* SoundIconView.swift in Sources */,
 				EBD8C0FA2AB997EC00DC99B8 /* N_Back_SwiftUIModel.swift in Sources */,
+				A1B200012ACF000200000001 /* GameSettings.swift in Sources */,
+				A1B200032ACF000200000002 /* SettingsStore.swift in Sources */,
+				A1B200052ACF000200000003 /* ScorePersistence.swift in Sources */,
 				EBA7C6D42ACB0C1800585AF6 /* nback.c in Sources */,
 				EBD8C0F82AB9974600DC99B8 /* N_Back_SwiftUIVM.swift in Sources */,
 				EBD8C0EA2AB9909200DC99B8 /* N_Back_SwiftUIApp.swift in Sources */,
@@ -367,6 +483,44 @@
 			};
 			name = Release;
 		};
+		A1B100102ACF000100000010 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDY9TRV8WD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.jonaswahslen.N-Back-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/N-Back-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/N-Back-SwiftUI";
+			};
+			name = Debug;
+		};
+		A1B100112ACF000100000011 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = PDY9TRV8WD;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "se.jonaswahslen.N-Back-SwiftUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/N-Back-SwiftUI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/N-Back-SwiftUI";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -384,6 +538,15 @@
 			buildConfigurations = (
 				EBD8C0F52AB9909400DC99B8 /* Debug */,
 				EBD8C0F62AB9909400DC99B8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A1B100122ACF000100000012 /* Build configuration list for PBXNativeTarget "N-Back-SwiftUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A1B100102ACF000100000010 /* Debug */,
+				A1B100112ACF000100000011 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
