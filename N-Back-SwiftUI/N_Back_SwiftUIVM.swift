@@ -8,6 +8,13 @@
 import Foundation
 import AVFoundation
 
+/// Brief color flash on a match button after a press.
+enum MatchButtonFlash: Equatable {
+    case none
+    case correct
+    case wrong
+}
+
 /// Bridges the pure model to SwiftUI: publishes UI state, runs the round timer, and speaks letters.
 /// Navigation stays in the View — this type only exposes `phase` / flags for the View to react to.
 @MainActor
@@ -32,7 +39,9 @@ final class N_Back_SwiftUIVM: ObservableObject {
 
     /// 1...gridCellCount while a visual stimulus is active; nil otherwise.
     @Published private(set) var highlightedCell: Int? = nil
-    @Published private(set) var showWrongFeedback: Bool = false
+    @Published private(set) var visualMatchFlash: MatchButtonFlash = .none
+    @Published private(set) var auditoryMatchFlash: MatchButtonFlash = .none
+    @Published private(set) var bothMatchFlash: MatchButtonFlash = .none
     /// Shown when the device has no TTS voices (lab accessibility requirement).
     @Published private(set) var voiceUnavailableMessage: String? = nil
 
@@ -112,7 +121,7 @@ final class N_Back_SwiftUIVM: ObservableObject {
         }
         theModel.returnToIdle()
         highlightedCell = nil
-        showWrongFeedback = false
+        clearMatchFlashes()
         voiceUnavailableMessage = nil
         syncFromModel()
     }
@@ -156,12 +165,31 @@ final class N_Back_SwiftUIVM: ObservableObject {
 
     func visualMatchPressed() {
         let result = theModel.registerVisualMatchPress()
-        handleMatchResult(result)
+        syncFromModel()
+        flash(.visual, for: result)
     }
 
     func auditoryMatchPressed() {
         let result = theModel.registerAuditoryMatchPress()
-        handleMatchResult(result)
+        syncFromModel()
+        flash(.auditory, for: result)
+    }
+
+    /// Both-mode: one press claims that position and sound both match.
+    func bothMatchPressed() {
+        let results = theModel.registerBothMatchPress()
+        syncFromModel()
+
+        switch (results.visual, results.auditory) {
+        case (.hit, .hit):
+            flash(.both, state: .correct)
+        case (.falseAlarm, _), (_, .falseAlarm):
+            flash(.both, state: .wrong)
+        case (.hit, .ignored), (.ignored, .hit):
+            flash(.both, state: .correct)
+        default:
+            break
+        }
     }
 
     // MARK: - Timer / round loop
@@ -186,6 +214,7 @@ final class N_Back_SwiftUIVM: ObservableObject {
 
                 self.theModel.completeCurrentEvent()
                 let continued = self.theModel.advanceToNextEvent()
+                self.clearMatchFlashes()
                 self.syncFromModel()
 
                 if !continued {
@@ -212,22 +241,47 @@ final class N_Back_SwiftUIVM: ObservableObject {
         roundTask = nil
     }
 
-    private func handleMatchResult(_ result: MatchPressResult) {
-        syncFromModel()
+    private enum MatchFlashTarget {
+        case visual, auditory, both
+    }
+
+    private func flash(_ target: MatchFlashTarget, for result: MatchPressResult) {
         switch result {
+        case .hit:
+            flash(target, state: .correct)
         case .falseAlarm:
-            triggerWrongFeedback()
-        case .hit, .ignored:
+            flash(target, state: .wrong)
+        case .ignored:
             break
         }
     }
 
-    private func triggerWrongFeedback() {
-        showWrongFeedback = true
-        Task { [weak self] in
-            try? await Task.sleep(nanoseconds: 350_000_000)
-            self?.showWrongFeedback = false
+    private func flash(_ target: MatchFlashTarget, state: MatchButtonFlash) {
+        switch target {
+        case .visual: visualMatchFlash = state
+        case .auditory: auditoryMatchFlash = state
+        case .both: bothMatchFlash = state
         }
+        Task { [weak self] in
+            try? await Task.sleep(nanoseconds: 450_000_000)
+            guard let self else { return }
+            switch target {
+            case .visual where self.visualMatchFlash == state:
+                self.visualMatchFlash = .none
+            case .auditory where self.auditoryMatchFlash == state:
+                self.auditoryMatchFlash = .none
+            case .both where self.bothMatchFlash == state:
+                self.bothMatchFlash = .none
+            default:
+                break
+            }
+        }
+    }
+
+    private func clearMatchFlashes() {
+        visualMatchFlash = .none
+        auditoryMatchFlash = .none
+        bothMatchFlash = .none
     }
 
     private func persistHighScoreIfNeeded() {

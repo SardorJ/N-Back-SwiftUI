@@ -282,6 +282,20 @@ struct N_BackSwiftUIModel {
         registerMatchPress(isVisual: false)
     }
 
+    /// Dual-mode helper: register both channels in one press ("I think both match").
+    mutating func registerBothMatchPress() -> (visual: MatchPressResult, auditory: MatchPressResult) {
+        let visual = registerVisualMatchPress()
+        let auditory = registerAuditoryMatchPress()
+        return (visual, auditory)
+    }
+
+    /// True when both channels can still accept a press this event (for the Both button).
+    func canRegisterBothMatches() -> Bool {
+        stimulusType == .both
+            && canRegisterMatch(visual: true)
+            && canRegisterMatch(visual: false)
+    }
+
     // MARK: Event tick (called by ViewModel timer)
 
     /// At the end of an event window: count misses for unanswered true matches.

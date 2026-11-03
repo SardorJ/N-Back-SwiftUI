@@ -110,7 +110,7 @@ struct GameView: View {
             if viewModel.stimulusType.usesVisual {
                 MatchButton(
                     title: "Position match",
-                    isWrong: viewModel.showWrongFeedback
+                    flash: viewModel.visualMatchFlash
                 ) {
                     viewModel.visualMatchPressed()
                 }
@@ -118,9 +118,17 @@ struct GameView: View {
             if viewModel.stimulusType.usesAuditory {
                 MatchButton(
                     title: "Sound match",
-                    isWrong: viewModel.showWrongFeedback
+                    flash: viewModel.auditoryMatchFlash
                 ) {
                     viewModel.auditoryMatchPressed()
+                }
+            }
+            if viewModel.stimulusType == .both {
+                MatchButton(
+                    title: "Both match",
+                    flash: viewModel.bothMatchFlash
+                ) {
+                    viewModel.bothMatchPressed()
                 }
             }
         }
@@ -188,12 +196,20 @@ struct GridView: View {
     }
 }
 
-// MARK: - Match button with non-offensive wrong feedback
+// MARK: - Match button with green (hit) / orange (false alarm) feedback
 
 struct MatchButton: View {
     let title: String
-    let isWrong: Bool
+    let flash: MatchButtonFlash
     let action: () -> Void
+
+    private var backgroundColor: Color {
+        switch flash {
+        case .none: return .blue
+        case .correct: return .green
+        case .wrong: return .orange
+        }
+    }
 
     var body: some View {
         Button(action: action) {
@@ -203,10 +219,10 @@ struct MatchButton: View {
                 .frame(minHeight: 48) // accessibility: minimum touch target (~44pt+)
                 .padding(.vertical, 8)
                 .foregroundColor(.white)
-                .background(isWrong ? Color.orange : Color.blue)
+                .background(backgroundColor)
                 .cornerRadius(14)
-                .scaleEffect(isWrong ? 1.06 : 1.0)
-                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: isWrong)
+                .scaleEffect(flash == .none ? 1.0 : 1.06)
+                .animation(.spring(response: 0.25, dampingFraction: 0.6), value: flash)
         }
         .accessibilityLabel(title)
         .accessibilityHint("Registers an n-back match for this channel")
